@@ -1,0 +1,46 @@
+.accordion {
+  display: block;
+}
+
+.accordion ::ng-deep .mat-expansion-panel {
+  background: transparent;
+  box-shadow: none;
+}
+
+.accordion ::ng-deep .mat-expansion-panel-header {
+  padding-inline: 0;
+}
+
+.accordion__header--bordered {
+  border-bottom: 2px solid #07B0FB;
+}
+
+.accordion__body--bordered {
+  border-bottom: 2px solid #07B0FB;
+}
+
+.accordion__title {
+  color: #262626;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.accordion__icon {
+  color: #07B0FB;
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+}
+
+.accordion__body {
+  background-color: #F4F4F4;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 10px 10px 20px;
+}
+
+.accordion ::ng-deep .mat-expansion-panel-body {
+  padding: 0;
+}

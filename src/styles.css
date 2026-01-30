@@ -1,1 +1,12 @@
+@import "tailwindcss" prefix(tw);
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --mat-sys-primary: #07B0FB;
+  --mat-sys-on-primary: #ffffff;
+  --mat-sys-primary-container: #c9e6ff;
+  --mat-sys-on-primary-container: #001e2f;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

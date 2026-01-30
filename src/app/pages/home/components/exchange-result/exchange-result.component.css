@@ -1,0 +1,48 @@
+.exchange-result {
+  border-top: 1px solid #E5E5E5;
+  padding-top: 24px;
+}
+
+.exchange-result__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.exchange-result__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.exchange-result__title {
+  color: #262626;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.exchange-result__datetime {
+  color: #333333;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.exchange-result__currency {
+  color: #07B0FB;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.exchange-result__value {
+  background-color: #E7F8FF;
+  padding-block: 16px;
+  text-align: center;
+}
+
+.exchange-result__value span {
+  color: #07B0FB;
+  font-size: 32px;
+  font-weight: 700;
+}

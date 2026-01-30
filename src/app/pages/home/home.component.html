@@ -1,0 +1,47 @@
+<section class="tw:flex tw:flex-col tw:min-h-screen">
+  <header class="header">
+    <figure class="figure">
+      <img
+        alt="Action Labs Logo"
+        class="tw:h-auto tw:w-40"
+        src="assets/action-labs-branding.svg"
+      />
+    </figure>
+
+    <h1 class="title">BRL Exchange Rate</h1>
+  </header>
+
+  <main class="tw:flex-1 tw:px-4 tw:mb-10">
+    <mat-form-field class="tw:mb-8 tw:w-full">
+      <mat-label>Enter the currency code</mat-label>
+      <mat-select [formControl]="currencyControl">
+        @for (currency of currencies; track currency) {
+          <mat-option [value]="currency">{{ currency }}</mat-option>
+        }
+      </mat-select>
+      <mat-error>Currency is required</mat-error>
+    </mat-form-field>
+
+    <button
+      (click)="onExchange()"
+      class="tw:text-lg tw:mb-8 exchange-button"
+      mat-flat-button
+      type="button">
+      Exchange Result
+    </button>
+
+    @if (showResult) {
+      <app-exchange-result
+        [currency]="currencyControl.value!"
+        [exchangeRate]="exchangeRate"
+        class="tw:mb-8 tw:block"
+      />
+
+      <app-exchange-history-accordion class="tw:block" />
+    }
+  </main>
+
+  <footer class="footer">
+    <p>Copyright 2022 - Action Labs</p>
+  </footer>
+</section>

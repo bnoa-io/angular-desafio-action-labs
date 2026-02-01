@@ -1,48 +1,53 @@
-.exchange-result {
-  border-top: 1px solid #E5E5E5;
-  padding-top: 24px;
+:host {
+  display: block;
+  margin-bottom: 2rem;
 }
 
-.exchange-result__header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
+.result {
+  border-top: 0.0625rem solid #E5E5E5;
+  padding-top: 1.5rem;
 }
 
-.exchange-result__info {
-  display: flex;
-  flex-direction: column;
+.result__amount {
+  color: var(--color-primary);
+  font-size: 2rem;
+  font-weight: 700;
 }
 
-.exchange-result__title {
-  color: #262626;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.exchange-result__datetime {
-  color: #333333;
-  font-size: 14px;
-  font-weight: 400;
-  margin: 0;
-}
-
-.exchange-result__currency {
-  color: #07B0FB;
-  font-size: 24px;
+.result__currency {
+  color: var(--color-primary);
+  font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.exchange-result__value {
-  background-color: #E7F8FF;
-  padding-block: 16px;
-  text-align: center;
+.result__datetime {
+  color: #333333;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin: 0;
 }
 
-.exchange-result__value span {
-  color: #07B0FB;
-  font-size: 32px;
-  font-weight: 700;
+.result__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.9375rem;
+}
+
+.result__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.result__title {
+  color: #262626;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.result__value {
+  background-color: #E7F8FF;
+  padding-block: 1rem;
+  text-align: center;
 }

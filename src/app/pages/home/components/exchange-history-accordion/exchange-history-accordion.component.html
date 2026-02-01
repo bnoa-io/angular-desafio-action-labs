@@ -1,10 +1,5 @@
 <mat-accordion class="accordion">
-  <mat-expansion-panel
-    class="tw:rounded-none!"
-    (opened)="isExpanded = true"
-    (closed)="isExpanded = false"
-    [hideToggle]="true"
-  >
+  <mat-expansion-panel [hideToggle]="true" (closed)="isExpanded = false" (opened)="isExpanded = true">
     <mat-expansion-panel-header
       class="accordion__header"
       [class.accordion__header--bordered]="!isExpanded"

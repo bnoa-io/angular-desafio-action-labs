@@ -1,49 +1,20 @@
 .card {
   background-color: #ffffff;
-  padding: 16px;
-  box-shadow: 0px 2px 8px 0px #0000001A
+  box-shadow: 0 0.125rem 0.5rem 0 #0000001A;
+  padding: 1rem;
 }
 
 .card__date {
-  color: #07B0FB;
-  font-size: 14px;
+  color: var(--color-primary);
+  font-size: 0.875rem;
   font-weight: 600;
-  margin: 0 0 12px 0;
-}
-
-.card__grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.card__row {
-  display: flex;
-  gap: 16px;
-}
-
-.card__field {
-  align-items: center;
-  display: flex;
-  flex: 1;
-  gap: 4px;
-}
-
-.card__label {
-  color: #3F3F3F;
-  font-size: 11px;
-  text-transform: uppercase;
-}
-
-.card__value {
-  color: #3F3F3F;
-  font-size: 16px;
-  font-weight: 600;
+  margin: 0 0 0.75rem 0;
 }
 
 .card__diff {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
+  margin-left: 0.375rem;
 }
 
 .card__diff--positive {
@@ -54,10 +25,22 @@
   color: #E54E4E;
 }
 
+.card__field {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  gap: 0.25rem;
+}
+
+.card__grid {
+  display: flex;
+  flex-direction: column;
+}
+
 .card__icon {
-  font-size: 20px;
-  height: 20px;
-  width: 20px;
+  font-size: 1.25rem;
+  height: 1.25rem;
+  width: 1.25rem;
 }
 
 .card__icon--positive {
@@ -66,4 +49,21 @@
 
 .card__icon--negative {
   color: #E54E4E;
+}
+
+.card__label {
+  color: #3F3F3F;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+}
+
+.card__row {
+  display: flex;
+  gap: 1rem;
+}
+
+.card__value {
+  color: #3F3F3F;
+  font-size: 1rem;
+  font-weight: 600;
 }

@@ -1,12 +1,30 @@
-@import "tailwindcss" prefix(tw);
-/* You can add global styles to this file, and also import other style files */
-
 :root {
-  --mat-sys-primary: #07B0FB;
+  --color-primary: #07B0FB;
+  --mat-sys-primary: var(--color-primary);
   --mat-sys-on-primary: #ffffff;
   --mat-sys-primary-container: #c9e6ff;
   --mat-sys-on-primary-container: #001e2f;
+  
+  --mdc-filled-text-field-container-color: #F4F4F4;
+  --mat-sys-surface-variant: #F4F4F4;
+  --mat-sys-surface-container: #F4F4F4;
+}
+
+/* Basic CSS Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  margin: 0;
+}
+
+app-exchange-history-accordion .mat-expansion-panel-body {
+  padding: 0;
+}

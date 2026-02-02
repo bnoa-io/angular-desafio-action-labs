@@ -1,9 +1,10 @@
-:host {
+:host,
+.accordion {
   display: block;
 }
 
 .accordion {
-  display: block;
+  border-bottom: 0.125rem solid var(--color-primary)
 }
 
 .accordion__body {
@@ -14,16 +15,8 @@
   padding: 0.625rem 0.625rem 1.25rem;
 }
 
-.accordion__body--bordered {
-  border-bottom: 0.125rem solid var(--color-primary);
-}
-
 .accordion__header {
   padding: 8px 0;
-}
-
-.accordion__header--bordered {
-  border-bottom: 0.125rem solid var(--color-primary);
 }
 
 .accordion__icon {

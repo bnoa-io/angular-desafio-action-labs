@@ -30,8 +30,11 @@
         <span class="card__diff" [class.card__diff--positive]="isPositive" [class.card__diff--negative]="!isPositive">
           {{ formatPercent(item.closeDiffPercent) }}
         </span>
-        <mat-icon class="card__icon" [class.card__icon--positive]="isPositive" [class.card__icon--negative]="!isPositive">
-          {{ isPositive ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+        <mat-icon 
+          class="card__icon" 
+          [class.card__icon--positive]="isPositive" 
+          [class.card__icon--negative]="!isPositive"
+          [fontIcon]="isPositive ? 'keyboard_arrow_up' : 'keyboard_arrow_down'">
         </mat-icon>
       </div>
     </div>

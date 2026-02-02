@@ -1,18 +1,11 @@
 <mat-accordion class="accordion">
   <mat-expansion-panel [hideToggle]="true" (closed)="isExpanded = false" (opened)="isExpanded = true">
-    <mat-expansion-panel-header
-      class="accordion__header"
-      [class.accordion__header--bordered]="!isExpanded"
-    >
-      <mat-panel-title class="accordion__title">
-        Last 30 days
-      </mat-panel-title>
-      <mat-icon class="accordion__icon">
-        {{ isExpanded ? 'remove' : 'add' }}
-      </mat-icon>
+    <mat-expansion-panel-header class="accordion__header">
+      <mat-panel-title class="accordion__title">Last 30 days</mat-panel-title>
+      <mat-icon class="accordion__icon" [fontIcon]="isExpanded ? 'remove' : 'add'"/>
     </mat-expansion-panel-header>
 
-    <div class="accordion__body accordion__body--bordered">
+    <div class="accordion__body">
       @for (item of historyItems; track item.date) {
         <app-exchange-history-card [item]="item" />
       }

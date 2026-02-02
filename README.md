@@ -1,59 +1,91 @@
-# AngularActionlabsDesafio
+# BRL Exchange Rate
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+Aplicação web para consultar a taxa de câmbio do Real Brasileiro (BRL) em relação a outras moedas estrangeiras.
 
-## Development server
+## Sobre o Projeto
 
-To start a local development server, run:
+O usuário seleciona um código de moeda e visualiza:
+- **Taxa de câmbio atual** com data/hora da última atualização
+- **Histórico dos últimos 30 dias** com valores de abertura (open), fechamento (close), máxima (high) e mínima (low)
+- **Variação percentual** (close diff) entre o fechamento do dia atual e o dia anterior
+
+### Moedas Suportadas
+
+| Código | Moeda |
+|--------|-------|
+| USD | Dólar Americano |
+| EUR | Euro |
+| GBP | Libra Esterlina |
+| JPY | Iene Japonês |
+| CAD | Dólar Canadense |
+
+## Tecnologias
+
+- **Angular 19** com standalone components
+- **Angular Material** para componentes de UI
+- **RxJS** para programação reativa
+- **TypeScript**
+
+## Como Executar
+
+### Pré-requisitos
+
+- Node.js (versão 18 ou superior)
+- npm ou yarn
+
+### Instalação
+
+```bash
+# Clonar o repositório
+git clone <url-do-repositorio>
+
+# Entrar na pasta do projeto
+cd angular-actionlabs-desafio
+
+# Instalar dependências
+npm install
+```
+
+### Executar em desenvolvimento
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Acesse `http://localhost:4200/` no navegador.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Build para produção
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Os arquivos serão gerados na pasta `dist/`.
 
-## Running unit tests
+## Estrutura do Projeto
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+```
+src/app/
+├── models/                 # Interfaces e tipos
+├── services/               # Serviços (API)
+└── pages/
+    └── home/
+        ├── components/
+        │   ├── exchange-result/           # Exibe taxa atual
+        │   ├── exchange-history-accordion/ # Accordion do histórico
+        │   └── exchange-history-card/      # Card de cada dia
+        └── home.component.*               # Página principal
 ```
 
-## Running end-to-end tests
+## API
 
-For end-to-end (e2e) testing, run:
+A aplicação consome a API de câmbio da Action Labs:
+- Documentação: https://api-brl-exchange.actionlabs.com.br/api/1.0/swagger-ui.html
 
-```bash
-ng e2e
-```
+**Limitações da API:**
+- 5 requisições por minuto
+- 500 requisições por dia
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Layout
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Design baseado no Figma: [BRL Exchange Rate](https://www.figma.com/file/hcwecJTI3KNnvy5LiFuYLi/BRL-Exchange-Rate)

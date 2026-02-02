@@ -24,17 +24,23 @@
 
     <button
       (click)="onExchange()"
+      [disabled]="isLoading"
       class="page__button"
       mat-flat-button
       type="button"
     >
-      Exchange Result
+      @if (isLoading) {
+        Loading...
+      } @else {
+        Exchange Result
+      }
     </button>
 
     @if (showResult) {
       <app-exchange-result
         [currency]="currencyControl.value!"
         [exchangeRate]="exchangeRate"
+        [lastUpdatedAt]="lastUpdatedAt"
       />
       <app-exchange-history-accordion />
     }

@@ -9,13 +9,11 @@ import { Component, Input } from '@angular/core';
 export class ExchangeResultComponent {
   @Input() currency: string = '';
   @Input() exchangeRate: number = 0;
+  @Input() lastUpdatedAt: string = '';
 
-  get currentDateTime(): string {
-    const now = new Date();
-    const date = now.toLocaleDateString('pt-BR');
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    return `${date} - ${hours}h${minutes}`;
+  get formattedDateTime(): string {
+    const date = new Date(this.lastUpdatedAt);
+    return date.toLocaleString().replace(',', ' -').split(':', 2).join('h');
   }
 
   get formattedRate(): string {

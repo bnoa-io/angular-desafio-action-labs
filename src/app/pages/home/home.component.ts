@@ -1,16 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {
+  EMPTY,
   Subject,
+  catchError,
   debounceTime,
   exhaustMap,
   filter,
   finalize,
+  forkJoin,
   takeUntil,
   tap
 } from 'rxjs';
 
 import { ExchangeService } from '../../services/exchange.service';
+import { ExchangeRateData } from '../../models/exchange-rate.model';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +29,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   lastUpdatedAt: string = '';
   showResult: boolean = false;
   isLoading: boolean = false;
+  historyItems: ExchangeRateData[] = [];
+  hasError: boolean = false;
 
   private exchangeClick$ = new Subject<void>();
   private destroy$ = new Subject<void>();
@@ -38,6 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.showResult = false;
         this.exchangeRate = 0;
         this.lastUpdatedAt = '';
+        this.historyItems = [];
       });
 
     this.exchangeClick$
@@ -47,25 +54,41 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.currencyControl.markAsTouched();
           return this.currencyControl.valid && !this.isLoading;
         }),
-        tap(() => (this.isLoading = true)),
+        tap(() => {
+          this.isLoading = true;
+          this.currencyControl.disable({ emitEvent: false });
+        }),
+        // exhaustMap, ignora novas emissões enquanto não completar e assim como switchMap altera o obeservable
         exhaustMap(() =>
-          // exhaustMap, ignora novas emissões enquanto não completar e muda o valor do obeservable
-          this.exchangeService
-            .getCurrentExchangeRate(this.currencyControl.value!)
-            .pipe(finalize(() => (this.isLoading = false)))
+          forkJoin({
+            current: this.exchangeService.getCurrentExchangeRate(this.currencyControl.value!),
+            daily: this.exchangeService.getDailyExchangeRate(this.currencyControl.value!)
+          }).pipe(
+            catchError((err) => {
+              console.error('Error fetching exchange rate:', err);
+              this.hasError = true;
+              this.showResult = false;
+              return EMPTY;
+            }),
+            finalize(() => {
+              this.isLoading = false;
+              this.currencyControl.enable({ emitEvent: false });
+            })
+          )
         ),
         takeUntil(this.destroy$)
       )
-      .subscribe({
-        next: (response) => {
-          if (response.success) {
-            this.exchangeRate = response.exchangeRate;
-            this.lastUpdatedAt = response.lastUpdatedAt;
-            this.showResult = true;
-          }
-        },
-        error: (err) => {
-          console.error('Error fetching exchange rate:', err);
+      .subscribe(({ current, daily }) => {
+        this.hasError = false;
+
+        if (current.success) {
+          this.exchangeRate = current.exchangeRate;
+          this.lastUpdatedAt = current.lastUpdatedAt;
+          this.showResult = true;
+        }
+
+        if (daily.success && daily.data) {
+          this.historyItems = this._processHistoryData(daily.data);
         }
       });
   }
@@ -77,5 +100,28 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onExchange(): void {
     this.exchangeClick$.next();
+  }
+
+  private _processHistoryData(data: ExchangeRateData[]): ExchangeRateData[] {
+    const sortedData = [...data]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 30);
+
+    return sortedData.map((item, index) => {
+      let closeDiffPercent = 0;
+      if (index < sortedData.length - 1) {
+        const previousClose = sortedData[index + 1].close;
+        closeDiffPercent = ((item.close - previousClose) / previousClose) * 100;
+      }
+
+      return {
+        date: new Date(item.date).toLocaleDateString('pt-BR'),
+        open: item.open,
+        close: item.close,
+        high: item.high,
+        low: item.low,
+        closeDiffPercent
+      };
+    });
   }
 }

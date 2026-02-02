@@ -13,6 +13,7 @@ export interface ExchangeRateData {
   close: number;
   high: number;
   low: number;
+  closeDiffPercent?: number;
 }
 
 export interface DailyExchangeRateResponse {

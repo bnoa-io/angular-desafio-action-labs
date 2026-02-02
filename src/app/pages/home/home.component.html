@@ -36,13 +36,19 @@
       }
     </button>
 
+    @if (hasError) {
+      <div class="page__error">
+        Ocorreu um erro na requisição. Por favor, tente novamente mais tarde.
+      </div>
+    }
+
     @if (showResult) {
       <app-exchange-result
         [currency]="currencyControl.value!"
         [exchangeRate]="exchangeRate"
         [lastUpdatedAt]="lastUpdatedAt"
       />
-      <app-exchange-history-accordion />
+      <app-exchange-history-accordion [historyItems]="historyItems" />
     }
   </main>
 

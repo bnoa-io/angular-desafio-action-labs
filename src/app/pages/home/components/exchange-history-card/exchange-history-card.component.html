@@ -1,5 +1,5 @@
 <article class="card">
-  <p class="card__date">{{ formattedDate }}</p>
+  <p class="card__date">{{ item.date }}</p>
 
   <div class="card__grid">
     <div class="card__row">
@@ -28,7 +28,7 @@
       <div class="card__field">
         <span class="card__label">Close Diff (%):</span>
         <span class="card__diff" [class.card__diff--positive]="isPositive" [class.card__diff--negative]="!isPositive">
-          {{ formatPercent(item.closeDiffPercent) }}
+          {{ formatPercent(item.closeDiffPercent!) }}
         </span>
         <mat-icon 
           class="card__icon" 

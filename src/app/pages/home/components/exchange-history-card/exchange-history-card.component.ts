@@ -1,13 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-export interface ExchangeHistoryItem {
-  date: Date;
-  open: number;
-  close: number;
-  high: number;
-  low: number;
-  closeDiffPercent: number;
-}
+import { ExchangeRateData } from '../../../../models/exchange-rate.model';
 
 @Component({
   selector: 'app-exchange-history-card',
@@ -16,20 +8,18 @@ export interface ExchangeHistoryItem {
   standalone: false
 })
 export class ExchangeHistoryCardComponent {
-  @Input() item!: ExchangeHistoryItem;
-
-  get formattedDate(): string {
-    return this.item.date.toLocaleDateString('pt-BR');
-  }
+  @Input() item!: ExchangeRateData;
 
   get isPositive(): boolean {
-    return this.item.closeDiffPercent >= 0;
+    return this.item.closeDiffPercent! >= 0;
   }
 
   formatCurrency(value: number): string {
     return value.toLocaleString('pt-BR', {
       style: 'currency',
-      currency: 'BRL'
+      currency: 'BRL',
+      minimumFractionDigits: 4,
+      maximumFractionDigits: 4
     });
   }
 

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ExchangeHistoryItem } from '../exchange-history-card/exchange-history-card.component';
+import { Component, Input } from '@angular/core';
+import { ExchangeRateData } from '../../../../models/exchange-rate.model';
 
 @Component({
   selector: 'app-exchange-history-accordion',
@@ -8,48 +8,6 @@ import { ExchangeHistoryItem } from '../exchange-history-card/exchange-history-c
   standalone: false
 })
 export class ExchangeHistoryAccordionComponent {
+  @Input() historyItems: ExchangeRateData[] = [];
   isExpanded: boolean = false;
-
-  historyItems: ExchangeHistoryItem[] = [
-    {
-      date: new Date(2022, 2, 9),
-      open: 5.0666,
-      close: 5.0038,
-      high: 5.0689,
-      low: 4.9836,
-      closeDiffPercent: 1.15
-    },
-    {
-      date: new Date(2022, 2, 8),
-      open: 5.0666,
-      close: 5.0038,
-      high: 5.0689,
-      low: 4.9836,
-      closeDiffPercent: 1.15
-    },
-    {
-      date: new Date(2022, 2, 7),
-      open: 5.0666,
-      close: 5.0038,
-      high: 5.0689,
-      low: 4.9836,
-      closeDiffPercent: -0.85
-    },
-    {
-      date: new Date(2022, 2, 6),
-      open: 5.0666,
-      close: 5.0038,
-      high: 5.0689,
-      low: 4.9836,
-      closeDiffPercent: 1.15
-    },
-    {
-      date: new Date(2022, 2, 5),
-      open: 5.0666,
-      close: 5.0038,
-      high: 5.0689,
-      low: 4.9836,
-      closeDiffPercent: -2.30
-    }
-  ];
 }
